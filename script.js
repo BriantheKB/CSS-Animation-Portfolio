@@ -41,41 +41,47 @@ tabs.forEach((tab, index) => {
 tabs[0].classList.add('active');
 tabContents[0].style.display = 'block';
 
-// JavaScript for Progress Bar (Example)
+const progressBarContainer = document.querySelector('.progress-bar__container');
 const progressBar = document.querySelector('.progress-bar');
-let progress = 0;
+const progressBarText = document.querySelector('.progress-bar__text');
 
-// Function to simulate progress
-function simulateProgress() {
-    progress += 1;
-    progressBar.style.width = progress + '%';
-    progressBar.textContent = progress + '%';
+const progressBarStates = [0, 7, 27, 34, 68, 80, 95, 100];
 
-    if (progress < 100) {
-        setTimeout(simulateProgress, 100); // Adjust timing as necessary
+let time = 0;
+let endState = 100;
+
+progressBarStates.forEach(state => {
+  let randomTime = Math.floor(Math.random() * 3000);
+  setTimeout(() => {
+    if(state == endState){
+      gsap.to(progressBar, {
+        x: `${state}%`,
+        duration: 2,
+        backgroundColor: '#4895ef',
+        onComplete: () => {
+          progressBarText.style.display = "initial";
+          progressBarContainer.style.boxShadow = '0 0 5px #4895ef';
+        }
+      });
+    }else{
+      gsap.to(progressBar, {
+        x: `${state}%`,
+        duration: 2,
+      });
     }
-}
-
-simulateProgress(); 
+  }, randomTime + time);
+  time += randomTime;
+})
 
 // JavaScript for Waving Text (if needed)
 window.onload = function() {
-    // JavaScript for Waving Text
     const wavingText = document.querySelector('.waving-text');
     if (wavingText) {
         wavingText.innerHTML = wavingText.textContent.split('').map(function(c) {
-            return c === ' ' ? '&nbsp;' : '<span>' + c + '</span>';
+            return '<span>' + (c === ' ' ? '&nbsp;' : c) + '</span>';
         }).join('');
     }
 };
 
-const radio = document.querySelector('input[type="radio"]');
-radio.addEventListener('change', (event) => {
-    if (event.target.checked) {
-        // Radio button is checked
-        const selectedValue = event.target.value;
-        // Perform actions based on the selected radio button value
-        console.log(`Selected value: ${selectedValue}`);
-    }
-});
+
 
