@@ -306,6 +306,7 @@ h1, h2 {
     border: none;
     cursor: pointer;
     font-size: 1em;
+    margin: 10px auto;
 }
 
 /* Modal Style */
@@ -323,10 +324,10 @@ h1, h2 {
 }
 
 .modal-content {
-    background-color: #11198e;
+    background-color: #adaebd;
     margin: 15% auto; 
     padding: 20px;
-    border: 1px solid #888;
+    border: 1px solid #ae0e0e;
     width: 80%; 
 }
 
@@ -371,20 +372,45 @@ h1, h2 {
     border: 1px solid #e2390e;
 }
 
-.progress-container {
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    width: 50%;
+  }
+  
+  .progress-bar__container {
+    width: 80%;
+    height: 2rem;
+    border-radius: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s;
+    will-change: transform;
+    box-shadow: 0 0 5px #e76f51;
+  }
+  
+  .progress-bar {
+    position: absolute;
+    height: 100%;
     width: 100%;
-    background-color: #713fcd;
-}
-
-.progress-bar {
-    width: 0%;
-    height: 30px;
-    background-color: #4CAF50;
-    text-align: center; /* Optional: for text inside the bar */
-    line-height: 30px; 
-    color: rgb(54, 183, 212); 
-    transition: width 0.5s ease;
-}
+    content: "";
+    background-color: #e76f51;
+    top:0;
+    bottom: 0;
+    left: -100%;
+    border-radius: inherit;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    color: white;
+    font-family: sans-serif;
+  }
+  
+  .progress-bar__text {
+    display: none;
+  }
 
 
 /* Miscellaneous */
@@ -402,59 +428,3 @@ h1, h2 {
     100% { transform: rotate(360deg); }
 }
 
-.fancy-checkbox input,
-.fancy-radio input {
-    opacity: 0;
-    position: absolute;
-}
-
-.fancy-checkbox label,
-.fancy-radio label {
-    position: relative;
-    padding-left: 25px;
-    cursor: pointer;
-    display: inline-block;
-    color: #333;
-}
-
-.fancy-checkbox label:before,
-.fancy-radio label:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 18px;
-    height: 18px;
-    border: 1px solid #4CAF50;
-    background-color: #0b0707;
-}
-
-.fancy-radio label:before {
-    border-radius: 50%;
-}
-
-.fancy-checkbox input:checked + label:before,
-.fancy-radio input:checked + label:before {
-    background-color: #4CAF50;
-}
-
-.fancy-checkbox label:after,
-.fancy-radio label:after {
-    content: '';
-    position: absolute;
-    top: 3px;
-    left: 3px;
-    width: 12px;
-    height: 12px;
-    background: #4CAF50;
-    opacity: 0;
-    border-radius: 50%;
-}
-
-.fancy-checkbox input:checked + label:after {
-    opacity: 1;
-}
-
-.fancy-radio input:checked + label:after {
-    border-radius: 50%;
-}
